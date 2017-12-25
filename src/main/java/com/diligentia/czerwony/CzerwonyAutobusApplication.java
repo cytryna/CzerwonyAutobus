@@ -1,9 +1,9 @@
-package com.diligentia.CzerwonyAutobus;
+package com.diligentia.czerwony;
 
 import javax.sql.DataSource;
 
-import com.diligentia.CzerwonyAutobus.model.ExpenceCategory;
-import com.diligentia.CzerwonyAutobus.model.Expense;
+import com.diligentia.czerwony.model.ExpenceCategory;
+import com.diligentia.czerwony.model.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -12,14 +12,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.diligentia.CzerwonyAutobus.repository.SystemRepository;
+import com.diligentia.czerwony.repository.SystemRepository;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @SpringBootApplication
-@EnableJpaRepositories("com.diligentia.CzerwonyAutobus.repository")
-@EntityScan("com.diligentia.CzerwonyAutobus.model")
+@EnableJpaRepositories("com.diligentia.czerwony.repository")
+@EntityScan("com.diligentia.czerwony.model")
 public class CzerwonyAutobusApplication implements CommandLineRunner {
 
     @Qualifier("dataSource")

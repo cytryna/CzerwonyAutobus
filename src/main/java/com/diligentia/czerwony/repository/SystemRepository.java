@@ -1,6 +1,6 @@
-package com.diligentia.CzerwonyAutobus.repository;
+package com.diligentia.czerwony.repository;
 
-import com.diligentia.CzerwonyAutobus.model.Expense;
+import com.diligentia.czerwony.model.Expense;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

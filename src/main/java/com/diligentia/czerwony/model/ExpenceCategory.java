@@ -1,4 +1,4 @@
-package com.diligentia.CzerwonyAutobus.model;
+package com.diligentia.czerwony.model;
 
 public enum ExpenceCategory {
     FOOD,

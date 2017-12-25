@@ -1,0 +1,12 @@
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane fx:controller="com.diligentia.czerwony.controller.Controller"
+            xmlns:fx="http://javafx.com/fxml"/>
+        <!-- more stuff here -->
+
+
+        <!--<AnchorPane xmlns="http://javafx.com/javafx"-->
+        <!--xmlns:fx="http://javafx.com/fxml"-->
+        <!--fx:controller="Sample"-->
+        <!--prefHeight="400.0" prefWidth="600.0">-->
+
+        <!--</AnchorPane>-->

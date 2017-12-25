@@ -1,4 +1,4 @@
-package com.diligentia.CzerwonyAutobus;
+package com.diligentia.czerwony;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
