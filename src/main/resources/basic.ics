@@ -1,0 +1,52 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:posiłki
+X-WR-TIMEZONE:Europe/Warsaw
+BEGIN:VEVENT
+DTSTART:20171229T150000Z
+DTEND:20171229T160000Z
+DTSTAMP:20171228T060911Z
+UID:0565ev589i57g0j1o2lak6cf4a@google.com
+CREATED:20171207T191857Z
+DESCRIPTION:<a href="https://www.google.com/url?q=http%3A%2F%2Fwww.agamasma
+ ka.pl%2F2015%2F01%2Fweganski-bezglutenowy-jaglany-burger.html&amp\;sa=D&amp
+ \;usd=2&amp\;usg=AFQjCNEOaGzrER5vxohU2xMdON1O7zT9mw" target="_blank">http:/
+ /www.agamasmaka.pl/2015/01/weganski-bezglutenowy-jaglany-burger.html</a><br
+ >
+LAST-MODIFIED:20171228T060556Z
+LOCATION:
+SEQUENCE:17
+STATUS:CONFIRMED
+SUMMARY:Radek Burgery z kaszy jaglanej plus marchewka z groszkiem
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20171230T050000Z
+DTEND:20171230T060000Z
+DTSTAMP:20171228T060911Z
+UID:2eeo6tklv18d0dkectro1c3nqi@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;X-NUM-GUE
+ STS=0:mailto:mjhh5d18jc604m7ttujod1j9m4@group.calendar.google.com
+CREATED:20171201T201215Z
+DESCRIPTION:<p>Składniki:</p><ul><li>1 szklanka suszonych grzybów</li><li>1
+  duża cebula</li><li>3 łyżki masła</li><li>Łyżka mąki</li><li>Sól</li><li>P
+ ieprz biały</li><li>Majeranek</li></ul><p></p><p>Wykonanie:<br>Grzyby moczy
+ łam kilka godzin (najlepiej zostawić na całą noc). Grzyby odcedziłam\, zala
+ łam niewielką ilością wody i wstawiłam do gotowania. Obrałam i pokroiłam ce
+ bulę w kostkę i zeszkliłam na maśle. Obgotowane grzyby dodałam do przysmażo
+ nej cebuli. Chwilę razem smażyłam. Następnie podlałam wodą\, w której gotow
+ ały się grzyby. Na drugiej patelni na łyżce masła przesmażyłam mąkę i zrobi
+ łam zasmażkę. Zasmażkę rozprowadziłam wywarem z grzybów energicznie mieszaj
+ ąc\, aby nie zrobiły się grudki. Tak przygotowany sos doprawiłam do smaku s
+ olą\, pieprzem i majerankiem.</p>
+LAST-MODIFIED:20171217T120659Z
+LOCATION:
+SEQUENCE:21
+STATUS:CONFIRMED
+SUMMARY:Radek  Sos grzybowy
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
