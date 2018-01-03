@@ -1,4 +1,4 @@
-package com.diligentia.javafx;
+package com.diligentia.javafx.thenewboston;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
