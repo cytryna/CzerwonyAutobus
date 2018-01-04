@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -46,7 +47,11 @@ public class DemoApplication extends Application {
 
     @PostConstruct
     public void afterStart() {
-        System.err.println("systemRepository "+systemRepository);
+        System.err.println("systemRepository 1 "+systemRepository);
+        systemRepository.findAll().stream().forEach(expense -> System.err.println(expense.getName()));
+
+        System.err.println("radek 3");
+
 
     }
 
@@ -67,6 +72,9 @@ public class DemoApplication extends Application {
         window.setTitle("Table View Sample");
         window.setWidth(300);
         window.setHeight(500);
+
+        Button refreshButton = new Button("Refresh");
+        refreshButton.setOnAction(event -> refreshTable());
 
         final Label label = new Label("Address Book");
         label.setFont(new Font("Arial", 20));
@@ -90,18 +98,24 @@ public class DemoApplication extends Application {
 
         table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
 
-        table.setItems(data);
-
+        System.err.println("radek 1");
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table);
+        vbox.getChildren().addAll(refreshButton, label, table);
 
 
         ((Group) scene.getRoot()).getChildren().addAll(vbox);
 
         window.setScene(scene);
         window.show();
+    }
+
+    private void refreshTable() {
+        System.err.println("systemRepository 2 "+systemRepository);
+        systemRepository.findAll().stream().forEach(expense -> data.add(new Person(expense.getName(), expense.getAmount().toString(), "jacob.smith@example.com")));
+        table.setItems(data);
+        table.refresh();
     }
 
 //    public void fillTheTable() {
