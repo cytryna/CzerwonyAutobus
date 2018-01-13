@@ -1,5 +1,6 @@
 package com.mvp.java.controllers;
 
+import com.diligentia.czerwony.repository.SystemRepository;
 import com.mvp.java.services.MissionsService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +27,10 @@ public class ConsoleTabController {
     
     @Autowired
     MissionsService service;
+
+    @Autowired
+    SystemRepository systemRepository;
+
     private TabPaneManger tabManager;
 
     public void initialize() {
@@ -50,7 +55,8 @@ public class ConsoleTabController {
         String missionInfo = null ;
                 
         try {
-            missionInfo = service.getMissionInfo(selectedItem); 
+            missionInfo = service.getMissionInfo(selectedItem);
+            systemRepository.findAll().stream().forEach(expense -> System.err.println(expense.getName()));
             getLog().appendText("Sucessfully retrieved mission info for " + selectedItem + "\n");
         } catch (IOException exception) {
             exception.printStackTrace (stackTraceWriter);
