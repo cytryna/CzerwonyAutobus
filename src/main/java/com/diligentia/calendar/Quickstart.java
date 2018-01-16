@@ -22,31 +22,42 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Quickstart {
-    /** Application name. */
+    /**
+     * Application name.
+     */
     private static final String APPLICATION_NAME =
             "Google Calendar API Java Quickstart";
 
-    /** Directory to store user credentials for this application. */
+    /**
+     * Directory to store user credentials for this application.
+     */
     private static final java.io.File DATA_STORE_DIR = new java.io.File(
             System.getProperty("user.home"), ".credentials/calendar-java-quickstart");
 
-    /** Global instance of the {@link FileDataStoreFactory}. */
+    /**
+     * Global instance of the {@link FileDataStoreFactory}.
+     */
     private static FileDataStoreFactory DATA_STORE_FACTORY;
 
-    /** Global instance of the JSON factory. */
+    /**
+     * Global instance of the JSON factory.
+     */
     private static final JsonFactory JSON_FACTORY =
             JacksonFactory.getDefaultInstance();
 
-    /** Global instance of the HTTP transport. */
+    /**
+     * Global instance of the HTTP transport.
+     */
     private static HttpTransport HTTP_TRANSPORT;
 
-    /** Global instance of the scopes required by this quickstart.
-     *
+    /**
+     * Global instance of the scopes required by this quickstart.
+     * <p>
      * If modifying these scopes, delete your previously saved credentials
      * at ~/.credentials/calendar-java-quickstart
      */
     private static final List<String> SCOPES =
-            Arrays.asList(CalendarScopes.CALENDAR_READONLY);
+            Arrays.asList(CalendarScopes.CALENDAR);
 
     static {
         try {
@@ -60,6 +71,7 @@ public class Quickstart {
 
     /**
      * Creates an authorized Credential object.
+     *
      * @return an authorized Credential object.
      * @throws IOException
      */
@@ -86,6 +98,7 @@ public class Quickstart {
 
     /**
      * Build and return an authorized Calendar client service.
+     *
      * @return an authorized Calendar client service
      * @throws IOException
      */
@@ -98,6 +111,9 @@ public class Quickstart {
                 .build();
     }
 
+    /**
+     * Insert event
+     */
     public static void main(String[] args) throws IOException {
         // Build a new authorized API client service.
         // Note: Do not confuse this class with the
@@ -107,25 +123,78 @@ public class Quickstart {
 
         // List the next 10 events from the primary calendar.
         DateTime now = new DateTime(System.currentTimeMillis());
-        Events events = service.events().list("primary")
-                .setMaxResults(10)
-                .setTimeMin(now)
-                .setOrderBy("startTime")
-                .setSingleEvents(true)
-                .execute();
-        List<Event> items = events.getItems();
-        if (items.size() == 0) {
-            System.out.println("No upcoming events found.");
-        } else {
-            System.out.println("Upcoming events");
-            for (Event event : items) {
-                DateTime start = event.getStart().getDateTime();
-                if (start == null) {
-                    start = event.getStart().getDate();
-                }
-                System.out.printf("%s (%s)\n", event.getSummary(), start);
-            }
-        }
+
+        Event event = new Event()
+                .setSummary("Zupa dyniowa")
+                .setLocation("800 Howard St., San Francisco, CA 94103")
+                .setDescription("A chance to hear more about Google's developer products.");
+
+        DateTime startDateTime = new DateTime("2018-01-16T09:00:00-07:00");
+        EventDateTime start = new EventDateTime()
+                .setDateTime(startDateTime)
+                .setTimeZone("America/Los_Angeles");
+        event.setStart(start);
+
+        DateTime endDateTime = new DateTime("2018-01-17T17:00:00-07:00");
+        EventDateTime end = new EventDateTime()
+                .setDateTime(endDateTime)
+                .setTimeZone("America/Los_Angeles");
+        event.setEnd(end);
+
+        String[] recurrence = new String[]{"RRULE:FREQ=DAILY;COUNT=2"};
+        event.setRecurrence(Arrays.asList(recurrence));
+
+        EventAttendee[] attendees = new EventAttendee[]{
+                new EventAttendee().setEmail("lpage@example.com"),
+                new EventAttendee().setEmail("sbrin@example.com"),
+        };
+        event.setAttendees(Arrays.asList(attendees));
+
+        EventReminder[] reminderOverrides = new EventReminder[]{
+                new EventReminder().setMethod("email").setMinutes(24 * 60),
+                new EventReminder().setMethod("popup").setMinutes(10),
+        };
+        Event.Reminders reminders = new Event.Reminders()
+                .setUseDefault(false)
+                .setOverrides(Arrays.asList(reminderOverrides));
+        event.setReminders(reminders);
+
+        String calendarId = "mjhh5d18jc604m7ttujod1j9m4@group.calendar.google.com";
+        event = service.events().insert(calendarId, event).execute();
+        System.out.printf("Event created: %s\n", event.getHtmlLink());
     }
+
+    /**
+    * Select events
+    */
+//   public static void main(String[] args) throws IOException {
+//        // Build a new authorized API client service.
+//        // Note: Do not confuse this class with the
+//        //   com.google.api.services.calendar.model.Calendar class.
+//        com.google.api.services.calendar.Calendar service =
+//                getCalendarService();
+//
+//        // List the next 10 events from the primary calendar.
+//        DateTime now = new DateTime(System.currentTimeMillis());
+//        Events events = service.events().list("primary")
+//                .setMaxResults(10)
+//                .setTimeMin(now)
+//                .setOrderBy("startTime")
+//                .setSingleEvents(true)
+//                .execute();
+//        List<Event> items = events.getItems();
+//        if (items.size() == 0) {
+//            System.out.println("No upcoming events found.");
+//        } else {
+//            System.out.println("Upcoming events");
+//            for (Event event : items) {
+//                DateTime start = event.getStart().getDateTime();
+//                if (start == null) {
+//                    start = event.getStart().getDate();
+//                }
+//                System.out.printf("%s (%s)\n", event.getSummary(), start);
+//            }
+//        }
+//    }
 
 }
