@@ -7,13 +7,14 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.DateTime;
-
+import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.calendar.CalendarScopes;
-import com.google.api.services.calendar.model.*;
+import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventDateTime;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +22,9 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
-public class Quickstart {
+@Service
+public class CalendarService {
+
     /**
      * Application name.
      */
@@ -68,58 +71,9 @@ public class Quickstart {
             System.exit(1);
         }
     }
-
-    /**
-     * Creates an authorized Credential object.
-     *
-     * @return an authorized Credential object.
-     * @throws IOException
-     */
-    public static Credential authorize() throws IOException {
-        // Load client secrets.
-        InputStream in =
-                Quickstart.class.getResourceAsStream("/client_secret.json");
-        GoogleClientSecrets clientSecrets =
-                GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-
-        // Build flow and trigger user authorization request.
-        GoogleAuthorizationCodeFlow flow =
-                new GoogleAuthorizationCodeFlow.Builder(
-                        HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-                        .setDataStoreFactory(DATA_STORE_FACTORY)
-                        .setAccessType("offline")
-                        .build();
-        Credential credential = new AuthorizationCodeInstalledApp(
-                flow, new LocalServerReceiver()).authorize("user");
-        System.out.println(
-                "Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
-        return credential;
-    }
-
-    /**
-     * Build and return an authorized Calendar client service.
-     *
-     * @return an authorized Calendar client service
-     * @throws IOException
-     */
-    public static com.google.api.services.calendar.Calendar
-    getCalendarService() throws IOException {
-        Credential credential = authorize();
-        return new com.google.api.services.calendar.Calendar.Builder(
-                HTTP_TRANSPORT, JSON_FACTORY, credential)
-                .setApplicationName(APPLICATION_NAME)
-                .build();
-    }
-
-    /**
-     * Insert event
-     */
-    public static void main(String[] args) throws IOException {
-        // Build a new authorized API client service.
-        // Note: Do not confuse this class with the
-        //   com.google.api.services.calendar.model.Calendar class.
-        com.google.api.services.calendar.Calendar service =
-                getCalendarService();
+    public void sendEventToCalendar() {
+        try {
+        com.google.api.services.calendar.Calendar service = getCalendarService();
 
         Event event = new Event()
                 .setSummary("Sos grzybowy")
@@ -150,41 +104,40 @@ public class Quickstart {
 
 
         String calendarId = "mjhh5d18jc604m7ttujod1j9m4@group.calendar.google.com";
-        event = service.events().insert(calendarId, event).execute();
+            event = service.events().insert(calendarId, event).execute();
         System.out.printf("Event created: %s\n", event.getHtmlLink());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
-    * Select events
-    */
-//   public static void main(String[] args) throws IOException {
-//        // Build a new authorized API client service.
-//        // Note: Do not confuse this class with the
-//        //   com.google.api.services.calendar.model.Calendar class.
-//        com.google.api.services.calendar.Calendar service =
-//                getCalendarService();
-//
-//        // List the next 10 events from the primary calendar.
-//        DateTime now = new DateTime(System.currentTimeMillis());
-//        Events events = service.events().list("primary")
-//                .setMaxResults(10)
-//                .setTimeMin(now)
-//                .setOrderBy("startTime")
-//                .setSingleEvents(true)
-//                .execute();
-//        List<Event> items = events.getItems();
-//        if (items.size() == 0) {
-//            System.out.println("No upcoming events found.");
-//        } else {
-//            System.out.println("Upcoming events");
-//            for (Event event : items) {
-//                DateTime start = event.getStart().getDateTime();
-//                if (start == null) {
-//                    start = event.getStart().getDate();
-//                }
-//                System.out.printf("%s (%s)\n", event.getSummary(), start);
-//            }
-//        }
-//    }
+    public static com.google.api.services.calendar.Calendar getCalendarService() throws IOException {
+        Credential credential = authorize();
+        return new com.google.api.services.calendar.Calendar.Builder(
+                HTTP_TRANSPORT, JSON_FACTORY, credential)
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+    }
+
+    public static Credential authorize() throws IOException {
+        // Load client secrets.
+        InputStream in =
+                Quickstart.class.getResourceAsStream("/client_secret.json");
+        GoogleClientSecrets clientSecrets =
+                GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+
+        // Build flow and trigger user authorization request.
+        GoogleAuthorizationCodeFlow flow =
+                new GoogleAuthorizationCodeFlow.Builder(
+                        HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
+                        .setDataStoreFactory(DATA_STORE_FACTORY)
+                        .setAccessType("offline")
+                        .build();
+        Credential credential = new AuthorizationCodeInstalledApp(
+                flow, new LocalServerReceiver()).authorize("user");
+        System.out.println(
+                "Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
+        return credential;
+    }
 
 }

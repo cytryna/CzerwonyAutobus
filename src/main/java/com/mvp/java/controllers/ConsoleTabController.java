@@ -1,5 +1,6 @@
 package com.mvp.java.controllers;
 
+import com.diligentia.calendar.CalendarService;
 import com.diligentia.czerwony.repository.SystemRepository;
 import com.mvp.java.services.MissionsService;
 import javafx.collections.FXCollections;
@@ -24,6 +25,9 @@ public class ConsoleTabController {
     @Autowired
     @Qualifier("stringPrintWriter")
     private PrintWriter stackTraceWriter;
+
+    @Autowired
+    private CalendarService calendarService;
     
     @Autowired
     MissionsService service;
@@ -44,6 +48,8 @@ public class ConsoleTabController {
         final String selectedItem = missionsList.getSelectionModel().getSelectedItem();
         missionOverviewText.positionCaret(0);
         missionOverviewText.appendText(getInfo(selectedItem));
+        System.err.println("        System.err.println(calendarService) = "+calendarService);
+        calendarService.sendEventToCalendar();
     }
     
     @Autowired

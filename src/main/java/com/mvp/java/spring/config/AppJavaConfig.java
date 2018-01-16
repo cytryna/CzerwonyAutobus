@@ -1,5 +1,6 @@
 package com.mvp.java.spring.config;
 
+import com.diligentia.calendar.CalendarService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -14,6 +15,11 @@ public class AppJavaConfig {
     public PrintWriter printWriter(){
         // useful when dumping stack trace to file
         return new PrintWriter(new StringWriter());
+    }
+
+    @Bean
+    public CalendarService calendarService(){
+        return new CalendarService();
     }
 
 }
