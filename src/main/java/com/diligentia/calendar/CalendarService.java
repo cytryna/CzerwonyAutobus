@@ -24,6 +24,10 @@ import java.util.List;
 
 @Service
 public class CalendarService {
+    /**
+     * Calendar name
+     */
+    public static final String MEALS_CALENDAR_ID = "mjhh5d18jc604m7ttujod1j9m4@group.calendar.google.com";// TODO: 17.01.18 Przenieść do propertisów
 
     /**
      * Application name.
@@ -71,39 +75,13 @@ public class CalendarService {
             System.exit(1);
         }
     }
-    public void sendEventToCalendar() {
+    public void sendEventToCalendar(Event event) {
         try {
         com.google.api.services.calendar.Calendar service = getCalendarService();
 
-        Event event = new Event()
-                .setSummary("Sos grzybowy")
-                .setDescription("Description:\n" +
-                        "Składniki:\n" +
-                        "\n" +
-                        "1 szklanka suszonych grzybów\n" +
-                        "1 duża cebula\n" +
-                        "3 łyżki masła\n" +
-                        "Łyżka mąki\n" +
-                        "Sól\n" +
-                        "Pieprz biały\n" +
-                        "Majeranek\n" +
-                        "Wykonanie:\n" +
-                        "Grzyby moczyłam kilka godzin (najlepiej zostawić na całą noc). Grzyby odcedziłam, zalałam niewielką ilością wody i wstawiłam do gotowania. Obrałam i pokroiłam cebulę w kostkę i zeszkliłam na maśle. Obgotowane grzyby dodałam do przysmażonej cebuli. Chwilę razem smażyłam. Następnie podlałam wodą, w której gotowały się grzyby. Na drugiej patelni na łyżce masła przesmażyłam mąkę i zrobiłam zasmażkę. Zasmażkę rozprowadziłam wywarem z grzybów energicznie mieszając, aby nie zrobiły się grudki. Tak przygotowany sos doprawiłam do smaku solą, pieprzem i majerankiem.");
-
-        DateTime startDateTime = new DateTime("2018-01-17T09:00:00+01:00");
-        EventDateTime start = new EventDateTime()
-                .setDateTime(startDateTime)
-                .setTimeZone("Europe/Warsaw");
-        event.setStart(start);
-
-        DateTime endDateTime = new DateTime("2018-01-17T10:00:00+01:00");
-        EventDateTime end = new EventDateTime()
-                .setDateTime(endDateTime)
-                .setTimeZone("Europe/Warsaw");
-        event.setEnd(end);
 
 
-        String calendarId = "mjhh5d18jc604m7ttujod1j9m4@group.calendar.google.com";
+        String calendarId = MEALS_CALENDAR_ID;
             event = service.events().insert(calendarId, event).execute();
         System.out.printf("Event created: %s\n", event.getHtmlLink());
         } catch (IOException e) {

@@ -18,7 +18,7 @@ import com.diligentia.czerwony.repository.SystemRepository;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-//@SpringBootApplication
+@SpringBootApplication
 //@EnableJpaRepositories("com.diligentia.czerwony.repository")
 //@EntityScan("com.diligentia.czerwony.model")
 public class CzerwonyAutobusApplication implements CommandLineRunner {

@@ -2,7 +2,11 @@ package com.mvp.java.controllers;
 
 import com.diligentia.calendar.CalendarService;
 import com.diligentia.czerwony.repository.SystemRepository;
+import com.google.api.client.util.DateTime;
+import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventDateTime;
 import com.mvp.java.services.MissionsService;
+import com.mvp.java.utils.DateTimeUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -49,9 +53,39 @@ public class ConsoleTabController {
         missionOverviewText.positionCaret(0);
         missionOverviewText.appendText(getInfo(selectedItem));
         System.err.println("        System.err.println(calendarService) = "+calendarService);
-        calendarService.sendEventToCalendar();
+        calendarService.sendEventToCalendar(createEvent());
     }
-    
+
+    private Event createEvent() {
+        Event event = new Event()
+                .setSummary("Sos grzybowy")
+                .setDescription("Description:\n" +
+                        "Składniki:\n" +
+                        "\n" +
+                        "1 szklanka suszonych grzybów\n" +
+                        "1 duża cebula\n" +
+                        "3 łyżki masła\n" +
+                        "Łyżka mąki\n" +
+                        "Sól\n" +
+                        "Pieprz biały\n" +
+                        "Majeranek\n" +
+                        "Wykonanie:\n" +
+                        "Grzyby moczyłam kilka godzin (najlepiej zostawić na całą noc). Grzyby odcedziłam, zalałam niewielką ilością wody i wstawiłam do gotowania. Obrałam i pokroiłam cebulę w kostkę i zeszkliłam na maśle. Obgotowane grzyby dodałam do przysmażonej cebuli. Chwilę razem smażyłam. Następnie podlałam wodą, w której gotowały się grzyby. Na drugiej patelni na łyżce masła przesmażyłam mąkę i zrobiłam zasmażkę. Zasmażkę rozprowadziłam wywarem z grzybów energicznie mieszając, aby nie zrobiły się grudki. Tak przygotowany sos doprawiłam do smaku solą, pieprzem i majerankiem.");
+
+        DateTime startDateTime = new DateTime("2018-01-18T10:15:30+01:00");
+        EventDateTime start = new EventDateTime()
+                .setDateTime(startDateTime)
+                .setTimeZone("Europe/Warsaw");
+        event.setStart(start);
+
+        DateTime endDateTime = new DateTime("2018-01-18T11:15:30+01:00");
+        EventDateTime end = new EventDateTime()
+                .setDateTime(endDateTime)
+                .setTimeZone("Europe/Warsaw");
+        event.setEnd(end);
+        return event;
+    }
+
     @Autowired
     private void setTabManager(TabPaneManger tabManager){
         this.tabManager = tabManager;
