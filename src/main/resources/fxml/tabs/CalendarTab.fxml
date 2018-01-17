@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+
+<?import javafx.scene.text.Text?>
+
+<Tab fx:id="tabCalendar" text="Calendar" xmlns:fx="http://javafx.com/fxml/1"
+     fx:controller="com.mvp.java.controllers.CalendarTabController">
+    <content>
+        <GridPane>
+            <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+            <Text text="Welcome"
+                  GridPane.columnIndex="0" GridPane.rowIndex="0"
+                  GridPane.columnSpan="2"/>
+
+            <Label text="User Name:"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+
+            <TextField
+                    GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Password:"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+
+            <PasswordField fx:id="passwordField"
+                           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Button text="Send" onAction="#handleSubmitButtonAction" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+
+        </GridPane>
+        <!--<HBox spacing="10" alignment="bottom_right"-->
+              <!--GridPane.columnIndex="1" GridPane.rowIndex="4">-->
+            <!--<Button text="Sign In"-->
+                    <!--onAction="#handleSubmitButtonAction"/>-->
+        <!--</HBox>-->
+    </content>
+</Tab>
