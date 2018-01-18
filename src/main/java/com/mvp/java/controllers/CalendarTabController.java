@@ -4,6 +4,7 @@ import com.diligentia.calendar.CalendarService;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
+import com.mvp.java.utils.DateTimeUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -43,9 +44,9 @@ public class CalendarTabController {
                         "Wykonanie:\n" +
                         "Grzyby moczyłam kilka godzin (najlepiej zostawić na całą noc). Grzyby odcedziłam, zalałam niewielką ilością wody i wstawiłam do gotowania. Obrałam i pokroiłam cebulę w kostkę i zeszkliłam na maśle. Obgotowane grzyby dodałam do przysmażonej cebuli. Chwilę razem smażyłam. Następnie podlałam wodą, w której gotowały się grzyby. Na drugiej patelni na łyżce masła przesmażyłam mąkę i zrobiłam zasmażkę. Zasmażkę rozprowadziłam wywarem z grzybów energicznie mieszając, aby nie zrobiły się grudki. Tak przygotowany sos doprawiłam do smaku solą, pieprzem i majerankiem.");
 
-        DateTime startDateTime = new DateTime("2018-01-18T10:15:30+01:00");
+//        DateTime startDateTime = DateTimeUtil.now();
         EventDateTime start = new EventDateTime()
-                .setDateTime(startDateTime)
+                .setDateTime(DateTimeUtil.today("10"))
                 .setTimeZone("Europe/Warsaw");
         event.setStart(start);
 

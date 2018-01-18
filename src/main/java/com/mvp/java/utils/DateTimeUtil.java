@@ -12,10 +12,23 @@ import java.util.regex.Pattern;
  * Created by rwichrowski on 17.01.18.
  */
 public class DateTimeUtil {
-    private Pattern RFC3339_PATTERN = Pattern.compile("^(\\d{4})-(\\d{2})-(\\d{2})([Tt](\\d{2}):(\\d{2}):(\\d{2})(\\.\\d+)?)?([Zz]|([+-])(\\d{2}):(\\d{2}))?");
+
+    private static final String TIME_SHIFT = "+01:00";
+    private static final String MINUTES_AND_SECONDS = ":00:00";
+    private static final String TIME = "T";
 
     public static DateTime now() {
-        System.err.println("ddddddddddd:"+ ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        return new DateTime(ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        String format = ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        return new DateTime(format);
+    }
+
+    public static DateTime today(String hour) {
+        String date = ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
+        StringBuilder stringBuilder = new StringBuilder(date);
+        stringBuilder.append(TIME);
+        stringBuilder.append(hour);
+        stringBuilder.append(MINUTES_AND_SECONDS);
+        stringBuilder.append(TIME_SHIFT);
+        return new DateTime(stringBuilder.toString());
     }
 }
