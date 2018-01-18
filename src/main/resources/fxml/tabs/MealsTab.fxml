@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Tab?>
+<Tab fx:id="MealsTab" text="Meals" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+     fx:controller="com.mvp.java.controllers.MealsTabController">
+    <content>
+        <AnchorPane prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <SplitPane dividerPositions="0.3277591973244147" prefHeight="400.0" prefWidth="600.0">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                            <children>
+                                <Pane layoutY="-1.0" prefHeight="400.0" prefWidth="600.0">
+                                    <children>
+                                        <Button layoutX="14.0" layoutY="95.0" mnemonicParsing="false" prefHeight="25.0"
+                                                prefWidth="174.0" text="Button" onAction="#handleSubmitButtonAction"/>
+                                        <DatePicker layoutX="14.0" layoutY="61.0"/>
+                                    </children>
+                                </Pane>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                            <children>
+                                <VBox prefHeight="398.0" prefWidth="399.0">
+                                    <children>
+                                        <Label text="Lista"/>
+                                        <ListView prefHeight="360.0" prefWidth="399.0"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </children>
+        </AnchorPane>
+    </content>
+</Tab>
