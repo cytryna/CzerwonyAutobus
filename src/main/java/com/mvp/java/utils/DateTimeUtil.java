@@ -1,6 +1,7 @@
 package com.mvp.java.utils;
 
 import com.google.api.client.util.DateTime;
+import com.sun.xml.internal.bind.v2.TODO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,11 +23,21 @@ public class DateTimeUtil {
         return new DateTime(format);
     }
 
-    public static DateTime today(String hour) {
+    //TODO-rwichrowski Dodać util dodjaący 0 do ghodzin poniżej 10
+    public static DateTime today(int hour) {
         String date = ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
         StringBuilder stringBuilder = new StringBuilder(date);
         stringBuilder.append(TIME);
-        stringBuilder.append(hour);
+        stringBuilder.append(""+hour);
+        stringBuilder.append(MINUTES_AND_SECONDS);
+        stringBuilder.append(TIME_SHIFT);
+        return new DateTime(stringBuilder.toString());
+    }
+
+    public static DateTime toDateTime(LocalDate date, int hour) {
+        StringBuilder stringBuilder = new StringBuilder(date.format(DateTimeFormatter.ISO_LOCAL_DATE));
+        stringBuilder.append(TIME);
+        stringBuilder.append(""+hour);
         stringBuilder.append(MINUTES_AND_SECONDS);
         stringBuilder.append(TIME_SHIFT);
         return new DateTime(stringBuilder.toString());

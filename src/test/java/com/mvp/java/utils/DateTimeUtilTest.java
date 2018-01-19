@@ -32,7 +32,7 @@ public class DateTimeUtilTest {
     @Test
     public void should_return_today_at_10_am() {
         //given
-        DateTime today = DateTimeUtil.today("10");
+        DateTime today = DateTimeUtil.today(10);
         //when
 
         //then
