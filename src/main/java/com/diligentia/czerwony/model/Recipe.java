@@ -61,4 +61,9 @@ public class Recipe {
     public void setMealCategory(Meal mealCategory) {
         this.mealCategory = mealCategory;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
