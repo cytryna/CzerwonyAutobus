@@ -1,17 +1,15 @@
 package com.mvp.java.controllers;
 
 import com.diligentia.calendar.CalendarService;
-import com.diligentia.czerwony.model.Recipe;
 import com.diligentia.czerwony.repository.RecipeRepository;
-import com.diligentia.czerwony.repository.SystemRepository;
-import com.google.api.client.util.DateTime;
-import com.google.api.services.calendar.model.Event;
-import com.google.api.services.calendar.model.EventDateTime;
+import com.mvp.java.gui.AlertBox;
+import com.mvp.java.model.CalendarEventBuilder;
 import com.mvp.java.services.MissionsService;
-import com.mvp.java.utils.DateTimeUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -19,15 +17,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 
 @Component
 public class ConsoleTabController {
 
-    @FXML private TextArea missionOverviewText;
+    @FXML private TextArea recipeDescription;
     @FXML private ListView<String> missionsList;
-    
+    @FXML private DatePicker datePicker;
+
     @Autowired
     @Qualifier("stringPrintWriter")
     private PrintWriter stackTraceWriter;
@@ -55,10 +54,10 @@ public class ConsoleTabController {
 
     @FXML
     private void onMouseClicked(MouseEvent event) {
-        missionOverviewText.clear();
+        recipeDescription.clear();
         final String selectedItem = missionsList.getSelectionModel().getSelectedItem();
-        missionOverviewText.positionCaret(0);
-        missionOverviewText.appendText(getInfo(selectedItem));
+        recipeDescription.positionCaret(0);
+        recipeDescription.appendText(getInfo(selectedItem));
 //        System.err.println("        System.err.println(calendarService) = "+calendarService);
 //        calendarService.sendEventToCalendar(createEvent());
     }
@@ -72,7 +71,7 @@ public class ConsoleTabController {
         String missionInfo = null ;
                 
         try {
-            missionInfo = recipeRepository.findOne(Long.valueOf(1)).getDescription();////TODO-rwichrowski zminić model listy @FXML private ListView<String> missionsList;
+            missionInfo = recipeRepository.findOne(Long.valueOf(1)).getDescription();//TODO-rwichrowski zminić model listy @FXML private ListView<String> missionsList;
 //            missionInfo = service.getMissionInfo(selectedItem);
 
             getLog().appendText("Sucessfully retrieved mission info for " + selectedItem + "\n");
@@ -84,8 +83,8 @@ public class ConsoleTabController {
         return missionInfo;
     }
 
-    public TextArea getMissionOverviewText() {
-        return missionOverviewText;
+    public TextArea getRecipeDescription() {
+        return recipeDescription;
     }
 
     public ListView<String> getMissionsList() {
@@ -96,4 +95,13 @@ public class ConsoleTabController {
         return tabManager.getVisualLog();
     }
 
+    public void handleSubmitButtonAction(ActionEvent actionEvent) {
+        LocalDate selectedDate = datePicker.getValue();
+        if (selectedDate == null || selectedDate.isBefore(LocalDate.now())) {
+            AlertBox.show("Wybierz date z przyszłości");
+            return;
+        }
+        final String selectedRecipe = missionsList.getSelectionModel().getSelectedItem();
+        calendarService.sendEventToCalendar(new CalendarEventBuilder().withSummary(selectedRecipe).withEventDate(selectedDate).withHourStart(10).build());
+    }
 }
