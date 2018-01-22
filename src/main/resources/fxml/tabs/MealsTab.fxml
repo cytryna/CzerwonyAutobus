@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Tab?>
 <Tab fx:id="MealsTab" text="Meals" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-     fx:controller="com.mvp.java.controllers.MealsTabController">
+     fx:controller="com.diligentia.controllers.MealsTabController">
     <content>
         <AnchorPane prefHeight="400.0" prefWidth="600.0">
             <children>

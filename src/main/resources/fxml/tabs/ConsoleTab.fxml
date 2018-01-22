@@ -15,10 +15,10 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.DatePicker?>
 <Tab fx:id="consoleTab" text="Console" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
-     fx:controller="com.mvp.java.controllers.ConsoleTabController">
+     fx:controller="com.diligentia.controllers.ConsoleTabController">
     <content>
 
-        <!--<AnchorPane fx:id="consoleTab" minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mvp.java.controllers.ConsoleTabController">-->
+        <!--<AnchorPane fx:id="consoleTab" minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ConsoleTabController">-->
         <AnchorPane prefHeight="180.0" prefWidth="200.0">
             <children>
                 <SplitPane dividerPositions="0.1492985971943888" prefHeight="160.0" prefWidth="200.0"
