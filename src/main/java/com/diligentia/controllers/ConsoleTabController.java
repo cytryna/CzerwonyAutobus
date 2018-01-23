@@ -58,7 +58,10 @@ public class ConsoleTabController {
         recipeDescription.clear();
         final Recipe selectedItem = missionsList.getSelectionModel().getSelectedItem();
         recipeDescription.positionCaret(0);
-        recipeDescription.appendText(getInfo(selectedItem));
+        if (selectedItem.getDescription() != null) {
+            recipeDescription.appendText(selectedItem.getDescription());
+            getLog().appendText("Sucessfully retrieved mission info for " + selectedItem.getName() + "\n");
+        }
 //        System.err.println("        System.err.println(calendarService) = "+calendarService);
 //        calendarService.sendEventToCalendar(createEvent());
     }
@@ -75,7 +78,7 @@ public class ConsoleTabController {
             missionInfo = recipeRepository.findOne(selectedItem.getId()).getDescription();
 //            missionInfo = service.getMissionInfo(selectedItem);
 
-            getLog().appendText("Sucessfully retrieved mission info for " + selectedItem.getName() + "\n");
+
         } catch (Exception exception) {
             exception.printStackTrace (stackTraceWriter);
             getLog().appendText(stackTraceWriter.toString() + "\n");
