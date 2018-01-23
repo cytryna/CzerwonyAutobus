@@ -1,7 +1,7 @@
 package com.diligentia.controllers;
 
 import com.diligentia.calendar.CalendarService;
-import com.diligentia.model.Recipe;
+import com.diligentia.model.Meal;
 import com.diligentia.repository.RecipeRepository;
 import com.diligentia.gui.AlertBox;
 import com.diligentia.model.CalendarEventBuilder;
@@ -25,7 +25,7 @@ import java.time.LocalDate;
 public class ConsoleTabController {
 
     @FXML private TextArea recipeDescription;
-    @FXML private ListView<Recipe> missionsList;
+    @FXML private ListView<Meal> missionsList;
     @FXML private DatePicker datePicker;
 
     @Autowired
@@ -44,10 +44,10 @@ public class ConsoleTabController {
     private TabPaneManger tabManager;
 
     public void initialize() {
-        ObservableList<Recipe> missions = FXCollections.observableArrayList();
-        recipeRepository.findAll().stream().forEach(recipe -> {
-            System.err.println(recipe.getName());
-            missions.add(recipe);
+        ObservableList<Meal> missions = FXCollections.observableArrayList();
+        recipeRepository.findAll().stream().forEach(meal -> {
+            System.err.println(meal.getName());
+            missions.add(meal);
         });
 
         missionsList.setItems(missions);
@@ -56,7 +56,7 @@ public class ConsoleTabController {
     @FXML
     private void onMouseClicked(MouseEvent event) {
         recipeDescription.clear();
-        final Recipe selectedItem = missionsList.getSelectionModel().getSelectedItem();
+        final Meal selectedItem = missionsList.getSelectionModel().getSelectedItem();
         recipeDescription.positionCaret(0);
         if (selectedItem.getDescription() != null) {
             recipeDescription.appendText(selectedItem.getDescription());
@@ -71,7 +71,7 @@ public class ConsoleTabController {
         this.tabManager = tabManager;
     }
  
-    public String getInfo(Recipe selectedItem) {
+    public String getInfo(Meal selectedItem) {
         String missionInfo = null ;
                 
         try {
@@ -91,7 +91,7 @@ public class ConsoleTabController {
         return recipeDescription;
     }
 
-    public ListView<Recipe> getMissionsList() {
+    public ListView<Meal> getMissionsList() {
         return missionsList;
     }
     
@@ -105,7 +105,7 @@ public class ConsoleTabController {
             AlertBox.show("Wybierz date z przyszłości");
             return;
         }
-        final Recipe selectedRecipe = missionsList.getSelectionModel().getSelectedItem();
-        calendarService.sendEventToCalendar(new CalendarEventBuilder().withSummary(selectedRecipe.getName()).withEventDate(selectedDate).withHourStart(10).build());
+        final Meal selectedMeal = missionsList.getSelectionModel().getSelectedItem();
+        calendarService.sendEventToCalendar(new CalendarEventBuilder().withSummary(selectedMeal.getName()).withEventDate(selectedDate).withHourStart(10).build());
     }
 }

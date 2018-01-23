@@ -2,7 +2,7 @@ package com.diligentia;
 
 import javax.sql.DataSource;
 
-import com.diligentia.model.Recipe;
+import com.diligentia.model.Meal;
 import com.diligentia.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,87 +34,87 @@ public class CzerwonyAutobusApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         recipeRepository.deleteAll();
         createTestData();
-        Iterable<Recipe> systemlist = recipeRepository.findAll();
-        for (Recipe systemmodel : systemlist) {
+        Iterable<Meal> systemlist = recipeRepository.findAll();
+        for (Meal systemmodel : systemlist) {
             System.out.println("Here is a meal: " + systemmodel.toString());
         }
     }
 
     private void createTestData() {
-        Recipe recipe;
+        Meal meal;
 
-        recipe = new Recipe();
-        recipe.setName("Leczo z ciecierzycą");
-        recipe.setDescription("http://www.agamasmaka.pl/2016/10/leczo-prosty-zdrowy-obiad-na-dwa-dni.html");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Leczo z ciecierzycą");
+        meal.setDescription("http://www.agamasmaka.pl/2016/10/leczo-prosty-zdrowy-obiad-na-dwa-dni.html");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Ryż z jabłkami");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Ryż z jabłkami");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Placuszki z dyni");
-        recipe.setDescription("http://skutecznie.tv/2013/07/placki-z-cukinii/");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Placuszki z dyni");
+        meal.setDescription("http://skutecznie.tv/2013/07/placki-z-cukinii/");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Pulpeciki");
-        recipe.setDescription("http://www.evernote.com/l/ASDPRz0GMT9Em6ag8Mh1CmA5dBs2wPn3R7Q/");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Pulpeciki");
+        meal.setDescription("http://www.evernote.com/l/ASDPRz0GMT9Em6ag8Mh1CmA5dBs2wPn3R7Q/");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Mielone z piekarnika");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Mielone z piekarnika");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Risotto z cukinią");
-        recipe.setDescription("http://www.agamasmaka.pl/2017/01/risotto-cukinia-proste-zdrowe-danie-jednogarnkowe.html");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Risotto z cukinią");
+        meal.setDescription("http://www.agamasmaka.pl/2017/01/risotto-cukinia-proste-zdrowe-danie-jednogarnkowe.html");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Burgery z kaszy jaglanej");
-        recipe.setDescription("http://www.agamasmaka.pl/2015/01/weganski-bezglutenowy-jaglany-burger.html");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Burgery z kaszy jaglanej");
+        meal.setDescription("http://www.agamasmaka.pl/2015/01/weganski-bezglutenowy-jaglany-burger.html");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Burgery z kaszy jaglanej");
-        recipe.setDescription("http://www.agamasmaka.pl/2015/01/weganski-bezglutenowy-jaglany-burger.html");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Burgery z kaszy jaglanej");
+        meal.setDescription("http://www.agamasmaka.pl/2015/01/weganski-bezglutenowy-jaglany-burger.html");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Indyk z grilla kasza buraczki");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Indyk z grilla kasza buraczki");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Udka z piekarnika, warzywa z patelni surówka");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Udka z piekarnika, warzywa z patelni surówka");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Szybkie gołąbki");
-        recipe.setDescription("https://www.olgasmile.com/szybkie-golabki.html");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        meal = new Meal();
+        meal.setName("Szybkie gołąbki");
+        meal.setDescription("https://www.olgasmile.com/szybkie-golabki.html");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
-        recipe = new Recipe();
-        recipe.setName("Pancake");
-        recipe.setDescription("http://www.pannaannabiega.pl/przepisy/platki-owsiane-wcale-musza-zle-smakowac-muffiny-ciastka-pancakes/");
-        recipe.setCreationDate(LocalDate.now());
+        meal = new Meal();
+        meal.setName("Pancake");
+        meal.setDescription("http://www.pannaannabiega.pl/przepisy/platki-owsiane-wcale-musza-zle-smakowac-muffiny-ciastka-pancakes/");
+        meal.setCreationDate(LocalDate.now());
 
-        recipeRepository.save(recipe);
-        recipe = new Recipe();
-        recipe.setName("Makaron z szpinakeim");
-        recipe.setCreationDate(LocalDate.now());
-        recipeRepository.save(recipe);
+        recipeRepository.save(meal);
+        meal = new Meal();
+        meal.setName("Makaron z szpinakeim");
+        meal.setCreationDate(LocalDate.now());
+        recipeRepository.save(meal);
 
     }
 }
