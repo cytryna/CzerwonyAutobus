@@ -77,6 +77,7 @@ public class CalendarService {
     }
     public void sendEventToCalendar(Event event) {
         try {
+        event.setSummary("--- "+event.getSummary());
         com.google.api.services.calendar.Calendar service = getCalendarService();
 
 
