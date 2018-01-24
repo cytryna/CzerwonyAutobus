@@ -1,6 +1,6 @@
 package com.diligentia.config;
 
-import com.diligentia.calendar.CalendarService;
+import com.diligentia.services.CalendarService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;

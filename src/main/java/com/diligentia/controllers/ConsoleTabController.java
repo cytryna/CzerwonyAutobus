@@ -1,6 +1,6 @@
 package com.diligentia.controllers;
 
-import com.diligentia.calendar.CalendarService;
+import com.diligentia.services.CalendarService;
 import com.diligentia.model.Meal;
 import com.diligentia.repository.RecipeRepository;
 import com.diligentia.gui.AlertBox;
@@ -106,6 +106,6 @@ public class ConsoleTabController {
             return;
         }
         final Meal selectedMeal = missionsList.getSelectionModel().getSelectedItem();
-        calendarService.sendEventToCalendar(new CalendarEventBuilder().withSummary(selectedMeal.getName()).withEventDate(selectedDate).withHourStart(10).build());
+        calendarService.sendEventToCalendar(new CalendarEventBuilder().withSummary(selectedMeal.getName()).withDescription(selectedMeal.getDescription()).withEventDate(selectedDate).withHourStart(10).build());
     }
 }

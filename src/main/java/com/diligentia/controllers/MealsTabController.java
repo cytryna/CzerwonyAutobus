@@ -1,6 +1,6 @@
 package com.diligentia.controllers;
 
-import com.diligentia.calendar.CalendarService;
+import com.diligentia.services.CalendarService;
 import com.diligentia.model.CalendarEventBuilder;
 import com.diligentia.utils.LocalDateStringConverter;
 import javafx.event.ActionEvent;
