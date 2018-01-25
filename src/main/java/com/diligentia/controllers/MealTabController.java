@@ -33,7 +33,7 @@ public class MealTabController implements Initializable {
 
     public void saveButtonAction(ActionEvent actionEvent) {
         Meal meal = new Meal();
-        System.err.println("Meal " + meal.getName() + "is saved");
+        System.err.println("Meal " + meal.getName() + " is saved");
     }
 
 
