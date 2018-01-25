@@ -1,12 +1,12 @@
 package com.diligentia.controllers;
 
+import com.diligentia.model.Meal;
 import com.diligentia.services.CalendarService;
 import com.diligentia.model.CalendarEventBuilder;
 import com.diligentia.utils.LocalDateStringConverter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,30 +15,25 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-public class MealsTabController implements Initializable {
+public class MealTabController implements Initializable {
 
     @FXML
-    private TextArea loggerTxtArea;
-
-    @FXML
-    private DatePicker datePicker;
+    private TextArea description;
 
     @Autowired
     private CalendarService service;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        datePicker.setConverter(new LocalDateStringConverter());
     }
 
-    public TextArea getLoggerTxtArea() {
-        return loggerTxtArea;
+    public TextArea getDescription() {
+        return description;
     }
 
-    //TODO-rwichrowski Dopisac testy
-    public void handleSubmitButtonAction(ActionEvent actionEvent) {
-        service.sendEventToCalendar(CalendarEventBuilder.create().withSummary("Kapuśniak").withEventDate(datePicker.getValue()).withHourStart(10).build());
-        System.err.println("datePicker:"+datePicker.getValue());
+    public void saveButtonAction(ActionEvent actionEvent) {
+        Meal meal = new Meal();
+        System.err.println("Meal " + meal.getName() + "is saved");
     }
 
 

@@ -17,7 +17,7 @@
             <tabs>
                 <fx:include fx:id="consoleTab" source="ConsoleTab.fxml" />
                 <fx:include fx:id="LoggerTab" source="LoggerTab.fxml" />
-                <fx:include fx:id="mealsTab" source="MealsTab.fxml" />
+                <fx:include fx:id="mealsTab" source="MealTab.fxml" />
             </tabs>
         </TabPane>
     </children>
