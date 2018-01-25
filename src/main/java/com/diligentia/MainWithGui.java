@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("com.diligentia.repository")
 @EntityScan("com.diligentia.model")
 @SpringBootApplication
-public class Main extends Application {
+public class MainWithGui extends Application {
 
     private ConfigurableApplicationContext springContext;
     private Parent rootNode;
@@ -25,7 +25,7 @@ public class Main extends Application {
 
     @Override
     public void init() throws Exception {
-        springContext = SpringApplication.run(Main.class);
+        springContext = SpringApplication.run(MainWithGui.class);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
         fxmlLoader.setControllerFactory(springContext::getBean);
         rootNode = fxmlLoader.load();

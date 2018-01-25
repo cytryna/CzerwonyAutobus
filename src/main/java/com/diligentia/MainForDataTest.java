@@ -8,16 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.time.LocalDate;
 
 //@SpringBootApplication
 //@EnableJpaRepositories("com.diligentia.repository")
 //@EntityScan("com.diligentia.model")
-public class CzerwonyAutobusApplication implements CommandLineRunner {
+public class MainForDataTest implements CommandLineRunner {
 
     @Qualifier("dataSource")
     @Autowired
@@ -27,7 +24,7 @@ public class CzerwonyAutobusApplication implements CommandLineRunner {
     RecipeRepository recipeRepository;
 
     public static void main(String[] args) {
-        SpringApplication.run(CzerwonyAutobusApplication.class, args);
+        SpringApplication.run(MainForDataTest.class, args);
     }
 
     @Override
