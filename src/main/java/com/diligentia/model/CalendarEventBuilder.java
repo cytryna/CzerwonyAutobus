@@ -12,6 +12,14 @@ public class CalendarEventBuilder {
     private String summary;
     private String description;
 
+    private CalendarEventBuilder() {
+    }
+
+    public static CalendarEventBuilder create() {
+        return new CalendarEventBuilder();
+    }
+
+
     //todo jak zaczyna się budowanie buildera?
     public CalendarEventBuilder withEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;

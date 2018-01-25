@@ -105,7 +105,7 @@ public class ConsoleTabController {
             AlertBox.show("Wybierz date z przyszłości");
             return;
         }
-        final Meal selectedMeal = missionsList.getSelectionModel().getSelectedItem();
-        calendarService.sendEventToCalendar(new CalendarEventBuilder().withSummary(selectedMeal.getName()).withDescription(selectedMeal.getDescription()).withEventDate(selectedDate).withHourStart(10).build());
+        final Meal selectedRecipe = missionsList.getSelectionModel().getSelectedItem();
+        calendarService.sendEventToCalendar(CalendarEventBuilder.create().withSummary(selectedRecipe.getName()).withEventDate(selectedDate).withHourStart(10).build());
     }
 }

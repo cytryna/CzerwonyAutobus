@@ -37,7 +37,7 @@ public class MealsTabController implements Initializable {
 
     //TODO-rwichrowski Dopisac testy
     public void handleSubmitButtonAction(ActionEvent actionEvent) {
-        service.sendEventToCalendar(new CalendarEventBuilder().withSummary("Kapuśniak").withEventDate(datePicker.getValue()).withHourStart(10).build());
+        service.sendEventToCalendar(CalendarEventBuilder.create().withSummary("Kapuśniak").withEventDate(datePicker.getValue()).withHourStart(10).build());
         System.err.println("datePicker:"+datePicker.getValue());
     }
 
