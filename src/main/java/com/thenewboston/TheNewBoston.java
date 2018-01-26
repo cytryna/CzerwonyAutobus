@@ -1,8 +1,12 @@
 package com.thenewboston;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -15,22 +19,34 @@ public class TheNewBoston extends Application {
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
 
-        window.setOnCloseRequest(e -> {
-            e.consume();
-            closeApp();
-        });
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10,10,10,10));
+        grid.setVgap(8);
+        grid.setHgap(10);
 
-        button = new Button("Close me");
-        button.setOnAction(e -> {
-            closeApp();
+        Label label = new Label("Username:");
+        GridPane.setConstraints(label, 0,0);
 
-        });
+        TextField textField = new TextField("Bucky");
+        GridPane.setConstraints(textField, 1,0);
 
-        StackPane layout = new StackPane();
-        layout.getChildren().add(button);
-        Scene scene = new Scene(layout, 300, 250);
+        Label passLabel = new Label("Password:");
+        GridPane.setConstraints(passLabel, 0,1);
+
+        TextField passInput = new TextField();
+        passInput.setPromptText("password");
+        GridPane.setConstraints(passInput, 1,1);
+
+        Button loginButton = new Button("Log in");
+        GridPane.setConstraints(loginButton,1,2);
+
+        grid.getChildren().addAll(label, textField,passInput,loginButton, passLabel);
+
+        Scene scene = new Scene(grid, 300,300);
         window.setScene(scene);
+
         window.show();
+
     }
 
     private void closeApp() {
