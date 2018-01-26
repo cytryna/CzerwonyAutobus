@@ -31,8 +31,8 @@
                         <Label text="Nazwa"/>
                         <Button mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="25.0" prefWidth="174.0"
                                 text="Save" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <TextField promptText="name" GridPane.columnIndex="1"/>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <TextField fx:id="mealNameTextField" promptText="name" GridPane.columnIndex="1"/>
+                        <TextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                     </children>
                 </GridPane>
             </children>

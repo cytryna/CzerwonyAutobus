@@ -2,7 +2,7 @@ package com.diligentia.controllers;
 
 import com.diligentia.services.CalendarService;
 import com.diligentia.model.Meal;
-import com.diligentia.repository.RecipeRepository;
+import com.diligentia.repository.MealRepository;
 import com.diligentia.gui.AlertBox;
 import com.diligentia.model.CalendarEventBuilder;
 import com.diligentia.services.MissionsService;
@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,12 @@ import java.time.LocalDate;
 @Component
 public class ConsoleTabController {
 
-    @FXML private TextArea recipeDescription;
-    @FXML private ListView<Meal> missionsList;
-    @FXML private DatePicker datePicker;
+    @FXML
+    private TextArea recipeDescription;
+    @FXML
+    private ListView<Meal> missionsList;
+    @FXML
+    private DatePicker datePicker;
 
     @Autowired
     @Qualifier("stringPrintWriter")
@@ -34,23 +38,26 @@ public class ConsoleTabController {
 
     @Autowired
     private CalendarService calendarService;
-    
+
     @Autowired
     MissionsService service;
 
     @Autowired
-    RecipeRepository recipeRepository;
+    MealRepository mealRepository;
 
     private TabPaneManger tabManager;
 
     public void initialize() {
-        ObservableList<Meal> missions = FXCollections.observableArrayList();
-        recipeRepository.findAll().stream().forEach(meal -> {
-            System.err.println(meal.getName());
-            missions.add(meal);
-        });
+        loadMeals();
+    }
 
-        missionsList.setItems(missions);
+    private void loadMeals() {
+        ObservableList<Meal> meals = FXCollections.observableArrayList();
+        mealRepository.findAll().stream().forEach(meal -> {
+            System.err.println(meal.getName());
+            meals.add(meal);
+        });
+        missionsList.setItems(meals);
     }
 
     @FXML
@@ -67,23 +74,23 @@ public class ConsoleTabController {
     }
 
     @Autowired
-    private void setTabManager(TabPaneManger tabManager){
+    private void setTabManager(TabPaneManger tabManager) {
         this.tabManager = tabManager;
     }
- 
+
     public String getInfo(Meal selectedItem) {
-        String missionInfo = null ;
-                
+        String missionInfo = null;
+
         try {
-            missionInfo = recipeRepository.findOne(selectedItem.getId()).getDescription();
+            missionInfo = mealRepository.findOne(selectedItem.getId()).getDescription();
 //            missionInfo = service.getMissionInfo(selectedItem);
 
 
         } catch (Exception exception) {
-            exception.printStackTrace (stackTraceWriter);
+            exception.printStackTrace(stackTraceWriter);
             getLog().appendText(stackTraceWriter.toString() + "\n");
         }
-        
+
         return missionInfo;
     }
 
@@ -94,8 +101,8 @@ public class ConsoleTabController {
     public ListView<Meal> getMissionsList() {
         return missionsList;
     }
-    
-    private TextArea getLog(){
+
+    private TextArea getLog() {
         return tabManager.getVisualLog();
     }
 

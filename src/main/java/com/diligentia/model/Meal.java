@@ -17,6 +17,10 @@ public class Meal {
     @Enumerated(EnumType.STRING)
     private MealKind mealKindCategory = MealKind.DINNER;
 
+    public Meal() {
+        this.creationDate = LocalDate.now();
+    }
+
     public long getId() {
         return id;
     }
@@ -39,10 +43,6 @@ public class Meal {
 
     public LocalDate getCreationDate() {
         return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
     }
 
     public String getUrl() {
