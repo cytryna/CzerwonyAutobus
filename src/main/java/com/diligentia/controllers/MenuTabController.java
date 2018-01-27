@@ -23,7 +23,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 
 @Component
-public class ConsoleTabController {
+public class MenuTabController {
 
     @FXML
     private TextArea recipeDescription;
