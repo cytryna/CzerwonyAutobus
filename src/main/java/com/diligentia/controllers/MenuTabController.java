@@ -49,6 +49,7 @@ public class MenuTabController {
 
     public void initialize() {
         loadMeals();
+        datePicker.setValue(LocalDate.now());
     }
 
     private void loadMeals() {
@@ -106,7 +107,7 @@ public class MenuTabController {
         return tabManager.getVisualLog();
     }
 
-    public void handleSubmitButtonAction(ActionEvent actionEvent) {
+    public void handleSubmitButtonSendAction(ActionEvent actionEvent) {
         LocalDate selectedDate = datePicker.getValue();
         if (selectedDate == null || selectedDate.isBefore(LocalDate.now())) {
             AlertBox.show("Wybierz date z przyszłości");
@@ -114,5 +115,16 @@ public class MenuTabController {
         }
         final Meal selectedRecipe = missionsList.getSelectionModel().getSelectedItem();
         calendarService.sendEventToCalendar(CalendarEventBuilder.create().withSummary(selectedRecipe.getName()).withEventDate(selectedDate).withHourStart(10).build());
+    }
+
+    //TODO-rwichrowski Stworzyć własny komponent z przyciskami Up i Down
+    public void handleSubmitButtonUpAction(ActionEvent actionEvent) {
+        LocalDate value = datePicker.getValue();
+        datePicker.setValue(value.plusDays(1));
+    }
+
+    public void handleSubmitButtonDownAction(ActionEvent actionEvent) {
+        LocalDate value = datePicker.getValue();
+        datePicker.setValue(value.minusDays(1));
     }
 }

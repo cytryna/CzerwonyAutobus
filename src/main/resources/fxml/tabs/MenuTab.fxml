@@ -3,17 +3,17 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.DatePicker?>
 <Tab fx:id="consoleTab" text="Console" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
      fx:controller="com.diligentia.controllers.MenuTabController">
     <content>
@@ -59,12 +59,33 @@
                             <children>
                                 <VBox prefHeight="646.0" prefWidth="846.0">
                                     <children>
-                                        <ToolBar prefHeight="40.0" prefWidth="200.0">
-                                            <items>
-                                                <Button mnemonicParsing="false" text="Button" onAction="#handleSubmitButtonAction"/>
-                                                <DatePicker fx:id="datePicker" />
-                                            </items>
-                                        </ToolBar>
+                                        <HBox prefHeight="24.0" prefWidth="846.0">
+                                            <children>
+                                                <Button mnemonicParsing="false" onAction="#handleSubmitButtonSendAction"
+                                                        text="Send"/>
+                                                <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="105.0">
+                                                    <HBox.margin>
+                                                        <Insets right="5.0"/>
+                                                    </HBox.margin>
+                                                </DatePicker>
+                                                <VBox prefHeight="200.0" prefWidth="25.0">
+                                                    <children>
+                                                        <Button maxHeight="-Infinity" minHeight="12.0" minWidth="25.0"
+                                                                mnemonicParsing="false" prefHeight="12.0"
+                                                                prefWidth="25.0" text="" onAction="#handleSubmitButtonUpAction"/>
+                                                        <Button maxHeight="-Infinity" minHeight="12.0" minWidth="25.0"
+                                                                mnemonicParsing="false" prefHeight="12.0"
+                                                                prefWidth="25.0" text="" onAction="#handleSubmitButtonDownAction"/>
+                                                    </children>
+                                                    <padding>
+                                                        <Insets right="5.0"/>
+                                                    </padding>
+                                                </VBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                            </padding>
+                                        </HBox>
                                         <TextArea fx:id="recipeDescription" editable="false" prefHeight="606.0"
                                                   prefWidth="621.0">
                                             <contextMenu>
