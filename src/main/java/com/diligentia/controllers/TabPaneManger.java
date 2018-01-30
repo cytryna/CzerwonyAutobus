@@ -24,6 +24,7 @@ public class TabPaneManger {
     public void initialize() {
         tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             System.err.println("It's works");
+            -Dsun.awt.disablegrab=true
         });
 
     }
