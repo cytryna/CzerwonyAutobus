@@ -15,9 +15,15 @@
     <children>
         <TabPane fx:id="tabPane" prefHeight="368.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
-                <fx:include fx:id="menuTab" source="MenuTab.fxml" />
-                <fx:include fx:id="mealsTab" source="MealTab.fxml" />
-                <fx:include fx:id="LoggerTab" source="LoggerTab.fxml" />
+                <Tab fx:id="menuTab" text="Console">
+                    <fx:include source="MenuTab.fxml"/>
+                </Tab>
+                <Tab fx:id="mealTab" text="Meal">
+                    <fx:include  source="MealTab.fxml"/>
+                </Tab>
+                <!--<Tab fx:id="loggerTab" text="Logger">-->
+                    <!--<fx:include source="LoggerTab.fxml"/>-->
+                <!--</Tab>-->
             </tabs>
         </TabPane>
     </children>

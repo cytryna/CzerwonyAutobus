@@ -13,13 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Tab?>
-<Tab fx:id="menuTab" text="Console" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
-     fx:controller="com.diligentia.controllers.MenuTabController">
-    <content>
-
-        <!--<AnchorPane fx:id="menuTab" minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuTabController">-->
-        <AnchorPane prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.diligentia.controllers.MenuTabController">
             <children>
                 <SplitPane dividerPositions="0.1492985971943888" prefHeight="160.0" prefWidth="200.0"
                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
@@ -109,5 +103,3 @@
                 </SplitPane>
             </children>
         </AnchorPane>
-    </content>
-</Tab>
