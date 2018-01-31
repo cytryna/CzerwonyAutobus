@@ -6,8 +6,6 @@ import javafx.scene.control.TextArea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
 @Component
 public class TabPaneManger {
 
@@ -15,6 +13,8 @@ public class TabPaneManger {
 
     @FXML
     TabPane tabPane;
+    @Autowired
+    MenuTabController menuTabController;
 
     @Autowired
     public TabPaneManger(LoggerTabController loggerTabController) {
@@ -23,8 +23,9 @@ public class TabPaneManger {
 
     public void initialize() {
         tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            System.err.println("It's works");
-            -Dsun.awt.disablegrab=true
+           if ("menuTab".equals(newValue.getId())) {
+               menuTabController.refreshMeals();
+           }
         });
 
     }

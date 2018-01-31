@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +47,11 @@ public class MenuTabController {
     private TabPaneManger tabManager;
 
     public void initialize() {
-        loadMeals();
+        refreshMeals();
         datePicker.setValue(LocalDate.now());
     }
 
-    private void loadMeals() {
+    public void refreshMeals() {
         ObservableList<Meal> meals = FXCollections.observableArrayList();
         mealRepository.findAll().stream().forEach(meal -> {
             System.err.println(meal.getName());

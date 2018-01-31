@@ -15,9 +15,9 @@
     <children>
         <TabPane fx:id="tabPane" prefHeight="368.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
-                <fx:include fx:id="consoleTab" source="MenuTab.fxml" />
-                <fx:include fx:id="LoggerTab" source="LoggerTab.fxml" />
+                <fx:include fx:id="menuTab" source="MenuTab.fxml" />
                 <fx:include fx:id="mealsTab" source="MealTab.fxml" />
+                <fx:include fx:id="LoggerTab" source="LoggerTab.fxml" />
             </tabs>
         </TabPane>
     </children>
