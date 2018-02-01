@@ -21,9 +21,9 @@
                 <Tab fx:id="mealTab" text="Meal">
                     <fx:include  source="MealTab.fxml"/>
                 </Tab>
-                <!--<Tab fx:id="loggerTab" text="Logger">-->
-                    <!--<fx:include source="LoggerTab.fxml"/>-->
-                <!--</Tab>-->
+                <Tab fx:id="loggerTab" text="Logger">
+                    <fx:include source="LoggerTab.fxml"/>
+                </Tab>
             </tabs>
         </TabPane>
     </children>
