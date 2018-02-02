@@ -113,7 +113,10 @@ public class MenuTabController {
             return;
         }
         final Meal selectedRecipe = missionsList.getSelectionModel().getSelectedItem();
-        calendarService.sendEventToCalendar(CalendarEventBuilder.create().withSummary(selectedRecipe.getName()).withEventDate(selectedDate).withHourStart(10).build());
+        calendarService.sendEventToCalendar(CalendarEventBuilder.create()
+                .withSummary(selectedRecipe.getName())
+                .withDescription(selectedRecipe.getDescription())
+                .withEventDate(selectedDate).withHourStart(10).build());
     }
 
     //TODO-rwichrowski Stworzyć własny komponent z przyciskami Up i Down
