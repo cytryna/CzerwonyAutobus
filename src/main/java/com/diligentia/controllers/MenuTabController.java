@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -49,6 +50,12 @@ public class MenuTabController {
     public void initialize() {
         refreshMeals();
         datePicker.setValue(LocalDate.now());
+        missionsList.setOnKeyPressed(event -> {
+            if (event.getCode().equals(KeyCode.DELETE)) {
+                mealRepository.delete(missionsList.getSelectionModel().getSelectedItem());
+                refreshMeals();
+            }
+        });
     }
 
     public void refreshMeals() {
